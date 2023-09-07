@@ -3,7 +3,9 @@ package com.example.admin.alarm;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private static final String LOGTAG = "alarms.log";
+
     private static final int PENDING_ALARM = 456;
     private EditText alarmInSec;
 
@@ -24,6 +28,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         alarmInSec = findViewById(R.id.edit_alarm);
+
+        findViewById(R.id.button_checklicpackage).setOnClickListener(new View.OnClickListener() {
+
+            final String LicName = "com.example.admin.response";
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    getPackageManager().getPackageInfo(LicName, 0);
+                    logInfo(LicName+" isLicPackageInstalled true");
+                } catch (PackageManager.NameNotFoundException e) {
+                    logInfo(LicName+"isLicPackageInstalled false: "+e);
+                }
+            }
+        });
     }
 
     public void scheduleAlarm(View view) {
@@ -64,5 +83,10 @@ public class MainActivity extends AppCompatActivity {
         );
 
         return pendingIntent;
+    }
+
+    private void logInfo(String text){
+        Log.d(LOGTAG, text);
+        Toast.makeText(this,text,Toast.LENGTH_LONG).show();
     }
 }

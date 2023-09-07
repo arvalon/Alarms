@@ -1,17 +1,17 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    //id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.example.admin.alarm"
         minSdkVersion 19
-        targetSdkVersion 33
-        versionCode 2
-        versionName "1.2"
+        compileSdk 29
+        targetSdkVersion 29
+        versionCode 3
+        versionName "1.3"
     }
     buildTypes {
         release {
@@ -23,14 +23,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.example.admin.alarm'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //implementation 'androidx.appcompat:appcompat:1.6.1'
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    //implementation 'androidx.core:core-ktx:1.9.0'
 
     testImplementation 'junit:junit:4.13.2'
 }
