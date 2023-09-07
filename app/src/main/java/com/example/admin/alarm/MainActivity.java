@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     getPackageManager().getPackageInfo(LicName, 0);
                     logInfo(LicName+" isLicPackageInstalled true");
                 } catch (PackageManager.NameNotFoundException e) {
-                    logInfo(LicName+"isLicPackageInstalled false: "+e);
+                    logInfo(LicName+" isLicPackageInstalled false: "+e);
                 }
             }
         });
